@@ -20,6 +20,7 @@ export default function Home() {
     setSearchValue,
     filteredTypeArr,
     setFilteredTypeArr,
+    loadValue,
     setLoadValue,
   } = useHome();
 
@@ -69,7 +70,7 @@ export default function Home() {
       if (response.ok) {
         data.forEach((pokemonJSON) => {
           const pokemon = {
-            name: pokemonJSON.name.toLowerCase(),
+            name: pokemonJSON.name,
             sprites: { front_default: pokemonJSON.sprite },
             types: [
               { type: { name: pokemonJSON.types[0].toLowerCase() } },
@@ -111,9 +112,12 @@ export default function Home() {
         <>
           <PokeFilter />
           <Pokedex />
-          <button className="load-btn" onClick={loadMore}>
-            Load More...
-          </button>
+
+          {tempArr.length > loadValue ? (
+            <button className="load-btn" onClick={loadMore}>
+              Load More...
+            </button>
+          ) : null}
         </>
       )}
     </div>
