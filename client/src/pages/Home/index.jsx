@@ -61,72 +61,44 @@ export default function Home() {
     pokemonData.length > 10 ? setIsLoading(false) : null;
   }, [status, pokemonData, filterValue, searchValue]);
 
-  const grabPokemon = async (i, j) => {
-    while (i < j) {
-      try {
-        const response = await fetch(`${pokeApiUrl}/${i + 1}`, getReqOptions);
-        const data = await response.json();
+  const grabPokemonJSON = async () => {
+    try {
+      const response = await fetch("../../pokemon.json");
+      const data = await response.json();
 
-        if (response.ok) {
+      if (response.ok) {
+        data.forEach((pokemonJSON) => {
           const pokemon = {
-            name: data.name,
-            sprites: { front_default: data.sprites.front_default },
+            name: pokemonJSON.name.toLowerCase(),
+            sprites: { front_default: pokemonJSON.sprite },
             types: [
-              { type: { name: data.types[0].type.name } },
+              { type: { name: pokemonJSON.types[0].toLowerCase() } },
               {
                 type: {
                   name:
-                    data.types.length === 1 ? null : data.types[1].type.name,
+                    pokemonJSON.types.length === 1
+                      ? null
+                      : pokemonJSON.types[1].toLowerCase(),
                 },
               },
             ],
           };
           setPokemonData((pokemonData) => [...pokemonData, pokemon]);
-        } else {
-          console.log("error");
-        }
-      } catch (error) {
-        throw new Error(error);
+        });
+      } else {
+        console.log("error");
       }
-      i++;
+    } catch (error) {
+      throw new Error(error);
     }
   };
 
   async function loadMore() {
-    // let i = pokemonData.length;
-    // let j = pokemonData.length + 20;
-    // while (i < j) {
-    //   try {
-    //     const response = await fetch(`${pokeApiUrl}/${i + 1}`, getReqOptions);
-    //     const data = await response.json();
-    //     if (response.ok) {
-    //       const pokemon = {
-    //         name: data.name,
-    //         sprites: { front_default: data.sprites.front_default },
-    //         types: [
-    //           { type: { name: data.types[0].type.name } },
-    //           {
-    //             type: {
-    //               name:
-    //                 data.types.length === 1 ? null : data.types[1].type.name,
-    //             },
-    //           },
-    //         ],
-    //       };
-    //       setPokemonData((pokemonData) => [...pokemonData, pokemon]);
-    //     } else {
-    //       console.log("error");
-    //     }
-    //   } catch (error) {
-    //     throw new Error(error);
-    //   }
-    //   i++;
-    // }
     setLoadValue((loadValue) => loadValue + 21);
   }
 
   useEffect(() => {
-    grabPokemon(0, 150);
+    grabPokemonJSON();
   }, []);
 
   return (
