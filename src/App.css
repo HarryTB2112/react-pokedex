@@ -243,11 +243,10 @@ body {
   width: 200px;
   height: fit-content;
   padding: 10px;
-  margin-top: 20px;
+  margin-bottom: 40px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
-  z-index: 100;
 }
 
 .load-btn:hover {
