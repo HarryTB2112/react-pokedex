@@ -119,7 +119,7 @@ export default function Home() {
           <PokeFilter />
           <Pokedex />
 
-          {tempArr.length > loadValue ? (
+          {tempArr.length - 1 > loadValue ? (
             <button className="load-btn" onClick={loadMore}>
               Load More...
             </button>

@@ -206,13 +206,13 @@
   {
     "id": 35,
     "name": "Clefairy",
-    "types": ["Normal"],
+    "types": ["Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png"
   },
   {
     "id": 36,
     "name": "Clefable",
-    "types": ["Normal"],
+    "types": ["Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png"
   },
   {
@@ -230,13 +230,13 @@
   {
     "id": 39,
     "name": "Jigglypuff",
-    "types": ["Normal"],
+    "types": ["Normal", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png"
   },
   {
     "id": 40,
     "name": "Wigglytuff",
-    "types": ["Normal"],
+    "types": ["Normal", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png"
   },
   {
@@ -728,7 +728,7 @@
   {
     "id": 122,
     "name": "Mr. Mime",
-    "types": ["Psychic"],
+    "types": ["Psychic", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
   },
   {
@@ -1034,25 +1034,25 @@
   {
     "id": 173,
     "name": "Cleffa",
-    "types": ["Normal"],
+    "types": ["Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png"
   },
   {
     "id": 174,
     "name": "Igglybuff",
-    "types": ["Normal"],
+    "types": ["Normal", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png"
   },
   {
     "id": 175,
     "name": "Togepi",
-    "types": ["Normal"],
+    "types": ["Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png"
   },
   {
     "id": 176,
     "name": "Togetic",
-    "types": ["Normal", "Flying"],
+    "types": ["Fairy", "Flying"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/176.png"
   },
   {
@@ -1094,13 +1094,13 @@
   {
     "id": 183,
     "name": "Marill",
-    "types": ["Water"],
+    "types": ["Water", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/183.png"
   },
   {
     "id": 184,
     "name": "Azumarill",
-    "types": ["Water"],
+    "types": ["Water", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png"
   },
   {
@@ -1250,13 +1250,13 @@
   {
     "id": 209,
     "name": "Snubbull",
-    "types": ["Normal"],
+    "types": ["Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png"
   },
   {
     "id": 210,
     "name": "Granbull",
-    "types": ["Normal"],
+    "types": ["Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png"
   },
   {
@@ -1677,19 +1677,19 @@
   {
     "id": 280,
     "name": "Ralts",
-    "types": ["Psychic"],
+    "types": ["Psychic", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/280.png"
   },
   {
     "id": 281,
     "name": "Kirlia",
-    "types": ["Psychic"],
+    "types": ["Psychic", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/281.png"
   },
   {
     "id": 282,
     "name": "Gardevoir",
-    "types": ["Psychic"],
+    "types": ["Psychic", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png"
   },
   {
@@ -1785,7 +1785,7 @@
   {
     "id": 298,
     "name": "Azurill",
-    "types": ["Normal"],
+    "types": ["Normal", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/298.png"
   },
   {
@@ -1815,7 +1815,7 @@
   {
     "id": 303,
     "name": "Mawile",
-    "types": ["Steel"],
+    "types": ["Steel", "Fairy"],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/303.png"
   },
   {
