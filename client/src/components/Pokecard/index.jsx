@@ -19,7 +19,10 @@ export default function Pokecard({ pokemon }) {
     }
   }
   return (
-    <div className="card" onClick={() => navigate(`${pokemon.name}`)}>
+    <div
+      className="card"
+      onClick={() => navigate(`${pokemon.name.toLowerCase()}`)}
+    >
       {pokemon.sprites ? (
         <img
           src={pokemon.sprites.front_default}

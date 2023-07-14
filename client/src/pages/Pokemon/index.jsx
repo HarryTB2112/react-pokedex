@@ -35,14 +35,22 @@ export default function Pokemon() {
   }
 
   return (
-    <div className="pokemon-container">
-      <div className="top-info">
-        <h1 className="pokemon-name" role="name">
-          {pokemon.name}
-        </h1>
-        <h2 className="pokemon-id">#{pokemon.id}</h2>
+    <div className="pokemon-container" aria-hidden="true">
+      <div className="top-info placeholder-glow">
+        {pokemon.name ? (
+          <h1 className="pokemon-name" role="name">
+            {pokemon.name}
+          </h1>
+        ) : (
+          <h1 className="placeholder">Loading</h1>
+        )}
+        {pokemon.name ? (
+          <h2 className="pokemon-id">#{pokemon.id}</h2>
+        ) : (
+          <h2 className="placeholder">Loading</h2>
+        )}
       </div>
-      <div className="main-info">
+      <div className="main-info placeholder-glow">
         {pokemon.sprites ? (
           <img
             src={pokemon.sprites.front_default}
@@ -50,20 +58,40 @@ export default function Pokemon() {
             className="sprite"
           />
         ) : (
-          "Loading"
+          <p
+            className="placeholder"
+            style={{ width: "523.36px", height: "523.36px" }}
+          >
+            Loading
+          </p>
         )}
         <div className="small-info">
           {pokemon.abilities ? (
             <h3>Ability: {pokemon.abilities[0].ability.name}</h3>
           ) : (
-            "Loading"
+            <h3 className="placeholder">Loading</h3>
           )}
           <br />
-          {pokemon.height ? <h3>Height: {pokemon.height}</h3> : "Loading"}
+          {pokemon.height ? (
+            <h3>Height: {pokemon.height}</h3>
+          ) : (
+            <h3 className="placeholder">Loading</h3>
+          )}
           <br />
-          {pokemon.weight ? <h3>Weight: {pokemon.weight}</h3> : "Loading"}
+          {pokemon.weight ? (
+            <h3>Weight: {pokemon.weight}</h3>
+          ) : (
+            <h3 className="placeholder">Loading</h3>
+          )}
           <br />
-          {pokemon.types ? checkTypes(pokemon.types) : "Loading"}
+          {pokemon.types ? (
+            checkTypes(pokemon.types)
+          ) : (
+            <>
+              <h1 className="placeholder">Loading</h1>
+              <h1 className="placeholder">Loading</h1>
+            </>
+          )}
           <br />
 
           {pokemon.stats ? (
@@ -80,7 +108,10 @@ export default function Pokemon() {
               </ul>
             </div>
           ) : (
-            "Loading"
+            <>
+              <h3 className="placeholder">Loading</h3>
+              <h3 className="placeholder">Loading</h3>
+            </>
           )}
         </div>
       </div>

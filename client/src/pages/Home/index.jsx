@@ -26,7 +26,9 @@ export default function Home() {
   function filterHandler() {
     if (searchValue !== "" && status === "type") {
       setFilteredTypeArr(
-        pokemonData.filter((item) => item.name.includes(searchValue))
+        pokemonData.filter((item) =>
+          item.name.toLowerCase().includes(searchValue.toLowerCase())
+        )
       );
 
       setTempArr(
@@ -39,7 +41,11 @@ export default function Home() {
         )
       );
     } else if (searchValue !== "") {
-      setTempArr(pokemonData.filter((item) => item.name.includes(searchValue)));
+      setTempArr(
+        pokemonData.filter((item) =>
+          item.name.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
     } else if (status === "type" && filterValue !== "") {
       setTempArr(
         pokemonData.filter(
@@ -69,7 +75,7 @@ export default function Home() {
       if (response.ok) {
         data.forEach((pokemonJSON) => {
           const pokemon = {
-            name: pokemonJSON.name.toLowerCase(),
+            name: pokemonJSON.name,
             sprites: { front_default: pokemonJSON.sprite },
             types: [
               { type: { name: pokemonJSON.types[0].toLowerCase() } },
