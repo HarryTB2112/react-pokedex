@@ -42,12 +42,16 @@ export default function Pokemon() {
             {pokemon.name}
           </h1>
         ) : (
-          <h1 className="placeholder">Loading</h1>
+          <h1 className="placeholder" style={{ fontSize: "50px" }}>
+            Loading
+          </h1>
         )}
         {pokemon.name ? (
           <h2 className="pokemon-id">#{pokemon.id}</h2>
         ) : (
-          <h2 className="placeholder">Loading</h2>
+          <h2 className="placeholder" style={{ fontSize: "40px" }}>
+            69
+          </h2>
         )}
       </div>
       <div className="main-info placeholder-glow">
