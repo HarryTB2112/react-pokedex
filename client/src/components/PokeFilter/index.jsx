@@ -13,17 +13,20 @@ export default function PokeFilter() {
     filterValue,
     setSearchValue,
     searchValue,
+    setLoadValue,
   } = useHome();
 
   function setFilterStatus(e) {
     setStatus(e.target.value);
     setSearchValue("");
     setFilterValue("grass");
+    setLoadValue(20);
   }
 
   function handleFilterValue(e) {
     setFilterValue(e.target.value);
     setSearchValue("");
+    setLoadValue(20);
   }
 
   function handleSearchValue(e) {
@@ -56,7 +59,6 @@ export default function PokeFilter() {
           <option value="electric">Electric</option>
           <option value="psychic">Psychic</option>
           <option value="fighting">Fighting</option>
-          <option value="fairy">Fairy</option>
           <option value="poison">Poison</option>
           <option value="fire">Fire</option>
           <option value="dragon">Dragon</option>
