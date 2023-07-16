@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 function Nav() {
+  const userToken = "";
+  const userVerified = true;
   return (
     <>
       <nav className="nav">
@@ -26,6 +28,29 @@ function Nav() {
           >
             About
           </NavLink>
+          {userVerified ? (
+            <NavLink
+              to="/login"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "rgb(208, 29, 29)" : null,
+                };
+              }}
+            >
+              Log In
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "rgb(208, 29, 29)" : null,
+                };
+              }}
+            >
+              Alex
+            </NavLink>
+          )}
         </ul>
       </nav>
       <Outlet />
