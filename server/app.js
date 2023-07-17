@@ -3,11 +3,14 @@ const cors = require("cors");
 const logRoutes = require("./middleware/logger");
 const mongoose = require("mongoose");
 const userRouter = require("./routers/user");
+const cookieParser = require("cookie-parser");
 const app = express();
 
-app.use(cors());
+// app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true }));
 app.use(express.json());
 app.use(logRoutes);
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.json({

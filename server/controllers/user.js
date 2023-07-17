@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { serialize } = require("cookie");
 const User = require("../models/User.js");
+const Cookies = require("cookies");
+const dayjs = require("dayjs");
 
 /* REGISTER USER */
 const register = async (req, res) => {
@@ -24,6 +25,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
+
     console.log(username, password);
     const user = await User.findOneByUsername(username);
 
@@ -41,16 +43,33 @@ const login = async (req, res) => {
     // const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
     // delete user.password;
 
-    const serialized = serialize("OutsideJWT", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "development",
+    const dataToSecure = {
+      dataToSecure: accessToken,
+    };
+
+    // var keys = ["keyboard cat"];
+
+    // let cookies = new Cookies(req, res, { keys: keys });
+
+    // cookies.set("AuthCookie", dataToSecure.dataToSecure, {
+    //   maxAge: 30000,
+    //   // secure: true,
+    //   httpOnly: true,
+    //   sameSite: true,
+    //   domain: "localhost",
+    // });
+
+    res.cookie("AuthCookieLogin", JSON.stringify(dataToSecure), {
+      // secure: process.env.NODE_ENV !== "development",
       sameSite: "strict",
-      maxAge: 600,
+      path: "/users",
+      httpOnly: true,
+      expires: dayjs().add(30, "days").toDate(),
     });
 
     res.status(200).send({
       auth: true,
-      headers: { "Set-Cookie": serialized },
+      token: accessToken,
       // refreshToken: refreshToken,
     });
   } catch (err) {
@@ -60,6 +79,7 @@ const login = async (req, res) => {
 
 checkAuth = async (req, res) => {
   try {
+    console.log(req.cookies);
     res.send({ auth: true, user: req.user });
   } catch (err) {
     res.status(500).json({ error: err.message });

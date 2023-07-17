@@ -11,14 +11,30 @@ export default function Login() {
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: dataObj.password ? JSON.stringify(dataObj) : null,
+    };
+
+    const otherOptions = {
+      method: "GET",
+      mode: "cors",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        // "Set-Cookie": "AuthCookieLogin",
+      },
     };
 
     const response = await fetch("http://localhost:3001/users/login", options);
     const data = await response.json();
     console.log(data);
+
+    const otherResponse = await fetch(
+      "http://localhost:3001/users/isUserAuth",
+      otherOptions
+    );
+    const otherData = await otherResponse.json();
+    console.log(otherData);
   };
 
   const handleEmailChange = (e) => {
