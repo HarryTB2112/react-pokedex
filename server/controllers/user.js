@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { serialize } = require("cookie");
 const User = require("../models/User.js");
 
 /* REGISTER USER */
@@ -23,6 +24,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log(username, password);
     const user = await User.findOneByUsername(username);
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -34,17 +36,25 @@ const login = async (req, res) => {
         username: user.username,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "10m" }
+      { expiresIn: 600 }
     );
-    const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
-    delete user.password;
-    res.status(200).json({
+    // const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+    // delete user.password;
+
+    const serialized = serialize("OutsideJWT", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "development",
+      sameSite: "strict",
+      maxAge: 600,
+    });
+
+    res.status(200).send({
       auth: true,
-      accessToken: accessToken,
-      refreshToken: refreshToken,
+      headers: { "Set-Cookie": serialized },
+      // refreshToken: refreshToken,
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).send({ error: err.message });
   }
 };
 

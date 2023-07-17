@@ -38,4 +38,25 @@ export const HomeProvider = ({ children }) => {
   );
 };
 
+const CredentialsContext = createContext();
+
+export const CredentialsProvider = ({ children }) => {
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
+  return (
+    <CredentialsContext.Provider
+      value={{
+        emailValue,
+        setEmailValue,
+        passwordValue,
+        setPasswordValue,
+      }}
+    >
+      {children}
+    </CredentialsContext.Provider>
+  );
+};
+
 export const useHome = () => useContext(HomeContext);
+export const useCredentials = () => useContext(CredentialsContext);

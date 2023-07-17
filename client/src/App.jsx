@@ -8,7 +8,7 @@ import { useHome } from "./contexts";
 function App() {
   const { isLoading } = useHome();
 
-  //hold the JWT value in a variable and set a state to say whether they are verified or not= this should happen on the login page
+  //hold the JWT value in a variable and set a state to say whether they are verified or not= this should happen on the login page???
   return (
     <div className="App" style={{ height: isLoading ? "100vh" : "" }}>
       <Routes>
