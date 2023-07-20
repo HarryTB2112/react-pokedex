@@ -73,7 +73,7 @@ export default function Home() {
       const response = await fetch("../../pokemon.json");
       const data = await response.json();
 
-      if (response.ok && pokemonData.length === 0) {
+      if (response.ok) {
         data.forEach((pokemonJSON) => {
           const pokemon = {
             name: pokemonJSON.name,
@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    grabPokemonJSON();
+    pokemonData.length === 0 ? grabPokemonJSON() : null;
   }, []);
 
   return (
