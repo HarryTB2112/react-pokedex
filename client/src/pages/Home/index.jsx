@@ -73,7 +73,7 @@ export default function Home() {
       const response = await fetch("../../pokemon.json");
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && pokemonData.length === 0) {
         data.forEach((pokemonJSON) => {
           const pokemon = {
             name: pokemonJSON.name,
