@@ -1,40 +1,53 @@
+import { useState } from "react";
 import { useCredentials } from "../../contexts";
+import axios from "axios";
 
 export default function Login() {
   const { emailValue, setEmailValue, passwordValue, setPasswordValue } =
     useCredentials();
+  const [name, setName] = useState("");
 
   const loginRequest = async (dataObj) => {
-    const options = {
-      method: "POST",
-      mode: "cors",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: dataObj.password ? JSON.stringify(dataObj) : null,
-    };
+    // const options = {
+    //   method: "POST",
+    //   mode: "cors",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: dataObj.password ? JSON.stringify(dataObj) : null,
+    // };
+    // const otherOptions = {
+    //   method: "GET",
+    //   mode: "cors",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     // "Set-Cookie": "AuthCookieLogin",
+    //   },
+    // };
+    // const response = await fetch("http://localhost:3001/users/login", options);
+    // const data = await response.json();
+    // console.log(data);
+    // const otherResponse = await fetch(
+    //   "http://localhost:3001/users/isUserAuth",
+    //   otherOptions
+    // );
+    // const otherData = await otherResponse.json();
+    // console.log(otherData);
 
-    const otherOptions = {
-      method: "GET",
-      mode: "cors",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        // "Set-Cookie": "AuthCookieLogin",
-      },
-    };
+    const obj = { name: dataObj["username"] };
+    await axios.post("http://localhost:3001/new", obj, {
+      withCredentials: true,
+    });
+  };
 
-    const response = await fetch("http://localhost:3001/users/login", options);
-    const data = await response.json();
-    console.log(data);
+  const retrieveToken = async () => {
+    const { data } = await axios.get("http://localhost:3001/name", {
+      withCredentials: true,
+    });
 
-    const otherResponse = await fetch(
-      "http://localhost:3001/users/isUserAuth",
-      otherOptions
-    );
-    const otherData = await otherResponse.json();
-    console.log(otherData);
+    setName(data.message);
   };
 
   const handleEmailChange = (e) => {
@@ -62,6 +75,7 @@ export default function Login() {
         justifyContent: "center",
       }}
     >
+      <h1>{name}</h1>
       <form
         onSubmit={handleSubmit}
         style={{
@@ -91,6 +105,9 @@ export default function Login() {
         />
         <button type="submit" className="load-btn">
           Login
+        </button>
+        <button onClick={retrieveToken} className="load-btn">
+          Retrieve
         </button>
       </form>
     </div>

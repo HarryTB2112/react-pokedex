@@ -1,6 +1,7 @@
 {
   "name": "react-pokedex",
   "private": true,
+  "proxy": "http://localhost:3001",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
