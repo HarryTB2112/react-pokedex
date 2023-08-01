@@ -36,18 +36,27 @@ export default function Login() {
     // const otherData = await otherResponse.json();
     // console.log(otherData);
 
-    const obj = { name: dataObj["username"] };
-    await axios.post("http://localhost:3001/new", obj, {
-      withCredentials: true,
-    });
+    const obj = {
+      username: dataObj["username"],
+      password: dataObj["password"],
+    };
+    const { data } = await axios.post(
+      "http://localhost:3001/users/login",
+      obj,
+      {
+        withCredentials: true,
+      }
+    );
+
+    console.log(data);
   };
 
   const retrieveToken = async () => {
-    const { data } = await axios.get("http://localhost:3001/name", {
+    const { data } = await axios.get("http://localhost:3001/users/isUserAuth", {
       withCredentials: true,
     });
-
-    setName(data.message);
+    console.log(data);
+    // setName(data);
   };
 
   const handleEmailChange = (e) => {
@@ -106,10 +115,10 @@ export default function Login() {
         <button type="submit" className="load-btn">
           Login
         </button>
-        <button onClick={retrieveToken} className="load-btn">
-          Retrieve
-        </button>
       </form>
+      <button onClick={retrieveToken} className="load-btn">
+        Retrieve
+      </button>
     </div>
   );
 }

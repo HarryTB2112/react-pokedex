@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User.js");
 const Cookies = require("cookies");
 const dayjs = require("dayjs");
+const express = require("express");
 
 /* REGISTER USER */
 const register = async (req, res) => {
@@ -40,36 +41,17 @@ const login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: 600 }
     );
-    // const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
-    // delete user.password;
 
-    const dataToSecure = {
-      dataToSecure: accessToken,
-    };
-
-    // var keys = ["keyboard cat"];
-
-    // let cookies = new Cookies(req, res, { keys: keys });
-
-    // cookies.set("AuthCookie", dataToSecure.dataToSecure, {
-    //   maxAge: 30000,
-    //   // secure: true,
-    //   httpOnly: true,
-    //   sameSite: true,
-    //   domain: "localhost",
-    // });
-
-    res.cookie("AuthCookieLogin", JSON.stringify(dataToSecure), {
-      // secure: process.env.NODE_ENV !== "development",
-      sameSite: "strict",
-      path: "/users",
-      httpOnly: true,
-      expires: dayjs().add(30, "days").toDate(),
-    });
+    req.session.token = accessToken;
+    req.session.name = username;
+    console.log(req.session);
+    console.log(req.user);
 
     res.status(200).send({
       auth: true,
-      token: accessToken,
+      id: user._id,
+      username: user.username,
+      // pokemon: user.pokemon
       // refreshToken: refreshToken,
     });
   } catch (err) {
@@ -79,7 +61,6 @@ const login = async (req, res) => {
 
 checkAuth = async (req, res) => {
   try {
-    console.log(req.cookies);
     res.send({ auth: true, user: req.user });
   } catch (err) {
     res.status(500).json({ error: err.message });

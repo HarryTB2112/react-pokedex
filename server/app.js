@@ -24,9 +24,10 @@ app.use(
     // genid: function (req) {
     //   return genuuid(); // use UUIDs for session IDs
     // },
-    secret: "sessionss",
+    secret: "AlexAndHarry",
     cookie: {
-      maxAge: 1000 * 60 * 60,
+      maxAge: 3600000,
+      expires: new Date(Date.now() + 3600000),
       sameSite: "lax",
       // httpOnly: false,
       secure: false,
@@ -41,30 +42,32 @@ app.get("/", (req, res) => {
   });
 });
 
-// app.use("/users", userRouter);
+app.use("/users", userRouter);
 
-app.post("/new", async (req, res) => {
-  try {
-    console.log(req.body.name);
-    req.session.name = req.body.name;
-    console.log(req.session);
-    res.send({ message: "saved" }).status(201);
-  } catch (error) {
-    console.log(error);
-    res.status(500);
-    res.send(error);
-  }
-});
+// app.post("/new", async (req, res) => {
+//   try {
+//     console.log(req.body.name);
+//     req.session.name = req.body.name;
+//     console.log(req.session);
+//     res.send({ message: "saved" }).status(201);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500);
+//     res.send(error);
+//   }
+// });
 
-app.get("/name", async (req, res) => {
-  try {
-    console.log(req.session.name);
-    res.send({ message: req.session.name });
-  } catch (error) {
-    console.log(error);
-    res.status(500);
-    res.send(error);
-  }
-});
+// app.get("/name", async (req, res) => {
+//   try {
+//     console.log(req.session);
+//     console.log(req.session);
+//     console.log(req.session.name);
+//     res.send({ message: req.session.name });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500);
+//     res.send(error);
+//   }
+// });
 
 module.exports = app;
