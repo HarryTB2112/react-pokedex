@@ -45,14 +45,12 @@ const login = async (req, res) => {
     req.session.token = accessToken;
     req.session.name = username;
     console.log(req.session);
-    console.log(req.user);
 
     res.status(200).send({
       auth: true,
       id: user._id,
       username: user.username,
       // pokemon: user.pokemon
-      // refreshToken: refreshToken,
     });
   } catch (err) {
     res.status(500).send({ error: err.message });

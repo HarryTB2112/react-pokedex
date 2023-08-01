@@ -8,34 +8,6 @@ export default function Login() {
   const [name, setName] = useState("");
 
   const loginRequest = async (dataObj) => {
-    // const options = {
-    //   method: "POST",
-    //   mode: "cors",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: dataObj.password ? JSON.stringify(dataObj) : null,
-    // };
-    // const otherOptions = {
-    //   method: "GET",
-    //   mode: "cors",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     // "Set-Cookie": "AuthCookieLogin",
-    //   },
-    // };
-    // const response = await fetch("http://localhost:3001/users/login", options);
-    // const data = await response.json();
-    // console.log(data);
-    // const otherResponse = await fetch(
-    //   "http://localhost:3001/users/isUserAuth",
-    //   otherOptions
-    // );
-    // const otherData = await otherResponse.json();
-    // console.log(otherData);
-
     const obj = {
       username: dataObj["username"],
       password: dataObj["password"],
