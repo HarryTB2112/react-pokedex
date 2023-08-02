@@ -57,6 +57,20 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        res.status(400).send("unable to log out");
+      } else {
+        res.send("successful logout");
+      }
+    });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+};
+
 checkAuth = async (req, res) => {
   try {
     res.send({ auth: true, user: req.user });
@@ -65,4 +79,4 @@ checkAuth = async (req, res) => {
   }
 };
 
-module.exports = { register, login, checkAuth };
+module.exports = { register, login, checkAuth, logout };

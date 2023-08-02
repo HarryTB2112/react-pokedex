@@ -23,6 +23,14 @@ export default function Login() {
     console.log(data);
   };
 
+  const logout = async () => {
+    const { data } = await axios.delete("http://localhost:3001/users/logout", {
+      withCredentials: true,
+    });
+
+    console.log(data);
+  };
+
   const retrieveToken = async () => {
     const { data } = await axios.get("http://localhost:3001/users/isUserAuth", {
       withCredentials: true,
@@ -90,6 +98,9 @@ export default function Login() {
       </form>
       <button onClick={retrieveToken} className="load-btn">
         Retrieve
+      </button>
+      <button onClick={logout} className="load-btn">
+        Logout
       </button>
     </div>
   );

@@ -18,6 +18,9 @@ const verifyToken = async (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       req.user = user;
+
+      req.session.cookie.maxAge = 3600000 * 480;
+      req.session.cookie.expires = 3600000 * 480;
       next();
     });
 
