@@ -8,7 +8,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5174",
     credentials: true,
   })
 );
@@ -29,10 +29,10 @@ app.use(
       //if there is two days of inactivity it will time out and the use will then have to log back in, but it will add two days of time on to the cookie if there is a successful match with the token middleware
 
       //this is 2 days
-      // maxAge: 3600000 * 48,
+      maxAge: 3600000 * 48,
       // maxAge: 3600000,
-      // expires: new Date(Date.now() + 3600000 * 48),
-      expires: new Date(Date.now() + 10000),
+      expires: new Date(Date.now() + 3600000 * 48),
+      // expires: new Date(Date.now() + 10000),
       sameSite: "lax",
       // httpOnly: false,
       secure: false,

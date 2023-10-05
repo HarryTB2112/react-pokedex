@@ -49,6 +49,7 @@ const login = async (req, res) => {
     res.status(200).send({
       auth: true,
       id: user._id,
+      token: accessToken,
       username: user.username,
       // pokemon: user.pokemon
     });
